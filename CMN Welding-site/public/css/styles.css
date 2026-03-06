@@ -159,7 +159,17 @@ html, body {
     content: ""; 
     position: absolute; 
     inset: 0; 
-    background: linear-gradient(135deg, rgba(0,0,0,0.45), rgba(0,0,0,0.55)); 
+
+    /* Brighter, cleaner gradient */
+    background: linear-gradient(
+        135deg,
+        rgba(0,0,0,0.25),
+        rgba(0,0,0,0.35)
+    );
+
+    /* Adds a subtle welding warmth */
+    background-blend-mode: overlay;
+
     z-index: 1; 
     pointer-events: none; 
 }
