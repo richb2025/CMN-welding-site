@@ -496,10 +496,10 @@ html, body {
 }
 
 .welding-header {
-    background: linear-gradient(90deg, #1a1a1a, #222, #1a1a1a);
-    border-bottom: 3px solid #ff6a00;
-    padding: 60px 20px;
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
 }
 
 /* ===========================
