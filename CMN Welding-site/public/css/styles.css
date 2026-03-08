@@ -563,6 +563,22 @@ html, body {
     }
 }
 
+@media (max-width: 600px) {
+    .custom-fab-section {
+        padding: 20px 15px;
+    }
+
+    .custom-fab-section h2 {
+        font-size: 1.4rem;
+        text-align: center;
+    }
+
+    .fab-list li {
+        font-size: 0.95rem;
+        line-height: 1.4;
+    }
+}
+
 /* Large / wide screens (optional tuning) */
 @media (min-width: 1200px) {
     .flashy-header {
@@ -591,4 +607,47 @@ html, body {
         background-position: center top !important; 
         background-size: contain !important; 
     } 
+}
+
+/* Simple CSS welding torch icon */
+.torch-icon {
+    width: 45px;
+    height: 45px;
+    border-radius: 4px;
+    background: linear-gradient(45deg, #ff6a00, #ffb37a);
+    position: relative;
+    box-shadow: 0 0 12px rgba(255, 106, 0, 0.7);
+}
+
+/* Torch nozzle */
+.torch-icon::before {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 12px;
+    height: 18px;
+    background: #333;
+    border-radius: 3px;
+}
+
+/* Torch flame */
+.torch-icon::after {
+    content: "";
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 18px;
+    height: 18px;
+    background: radial-gradient(circle, #ffb37a 0%, #ff6a00 60%, transparent 100%);
+    border-radius: 50%;
+    animation: flamePulse 1.4s infinite ease-in-out;
+}
+
+@keyframes flamePulse {
+    0% { transform: translateX(-50%) scale(1); opacity: 0.9; }
+    50% { transform: translateX(-50%) scale(1.25); opacity: 1; }
+    100% { transform: translateX(-50%) scale(1); opacity: 0.9; }
 }
