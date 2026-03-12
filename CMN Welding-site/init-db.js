@@ -1,4 +1,5 @@
 require('dotenv').config();
+console.log("DATABASE_URL LOADED:", process.env.DATABASE_URL);
 const { Client } = require('pg');
 
 async function init(attempt = 1) {
