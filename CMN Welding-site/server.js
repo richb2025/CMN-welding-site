@@ -47,3 +47,7 @@ app.get('/custom_fab', (req, res) => {
     res.sendFile(__dirname + '/public/Custom_Fab.html');
 });
 
+app.get('/store', (req, res) => {
+    res.sendFile(__dirname + '/public/Store.html');
+});
+
