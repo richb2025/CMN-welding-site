@@ -9,7 +9,7 @@ html, body {
     font-family: Arial, sans-serif;
 }
 
-/* Page wrapper (if you use one) */
+/* Page wrapper */
 .page-wrap {
     min-height: calc(100vh - 200px); /* fixed calc syntax */
 }
