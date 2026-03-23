@@ -1,33 +1,26 @@
 /* ================================================================
    CMN Welding & Hydraulics — styles.css
-   Polished redesign: keeps original hero, adds trust strip,
-   cleans up nav, services, reviews, and footer.
    ================================================================ */
- 
-/* ── Google Fonts are loaded in <head> ──────────────────────────
-   Oswald       → headings / display text
-   Source Sans 3 → body / UI text
-   ──────────────────────────────────────────────────────────────── */
- 
+
 /* ── CSS Custom Properties ─────────────────────────────────────── */
 :root {
-  --orange:       #E8620A;
-  --orange-light: #FF8C3A;
-  --dark:         #111111;
-  --dark2:        #1A1A1A;
-  --dark3:        #242424;
-  --text:         #F0EDE8;
-  --muted:        #9A9590;
-  --steel:        #6E6E6E;
-  --border-dim:   rgba(255, 255, 255, 0.07);
+  --orange:        #E8620A;
+  --orange-light:  #FF8C3A;
+  --dark:          #111111;
+  --dark2:         #1A1A1A;
+  --dark3:         #242424;
+  --text:          #F0EDE8;
+  --muted:         #9A9590;
+  --steel:         #6E6E6E;
+  --border-dim:    rgba(255, 255, 255, 0.07);
   --border-orange: rgba(232, 98, 10, 0.3);
 }
- 
+
 /* ── Reset & Base ───────────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
- 
+
 html { scroll-behavior: smooth; }
- 
+
 body {
   font-family: 'Source Sans 3', 'Segoe UI', sans-serif;
   font-size: 16px;
@@ -35,22 +28,21 @@ body {
   background: var(--dark);
   color: var(--text);
 }
- 
+
 a { color: inherit; text-decoration: none; }
 ul { list-style: none; }
- 
 img { display: block; max-width: 100%; }
- 
+
 .container {
   width: 100%;
   max-width: 1100px;
   margin: 0 auto;
   padding: 0 24px;
 }
- 
+
 .page-wrap { display: flex; flex-direction: column; min-height: 100vh; }
- 
- 
+
+
 /* ================================================================
    NAVBAR
    ================================================================ */
@@ -66,15 +58,14 @@ img { display: block; max-width: 100%; }
   top: 0;
   z-index: 100;
 }
- 
-/* Left links */
+
 .nav-left,
 .nav-right {
   display: flex;
   align-items: center;
   gap: 28px;
 }
- 
+
 .navbar a {
   font-size: 12px;
   font-weight: 600;
@@ -83,13 +74,13 @@ img { display: block; max-width: 100%; }
   color: var(--muted);
   transition: color 0.2s;
 }
- 
+
 .navbar a:hover,
 .navbar a.active { color: var(--text); }
- 
+
 /* Dropdown */
 .dropdown { position: relative; }
- 
+
 .dropdown-content {
   display: none;
   position: absolute;
@@ -102,7 +93,7 @@ img { display: block; max-width: 100%; }
   padding: 6px 0;
   z-index: 200;
 }
- 
+
 .dropdown-content li a {
   display: block;
   padding: 9px 18px;
@@ -111,15 +102,15 @@ img { display: block; max-width: 100%; }
   letter-spacing: 0.07em;
   color: var(--muted);
 }
- 
+
 .dropdown-content li a:hover {
   background: rgba(232, 98, 10, 0.08);
   color: var(--orange-light);
 }
- 
+
 .dropdown:hover .dropdown-content { display: block; }
- 
-/* "Get a Quote" CTA button in navbar */
+
+/* Navbar CTA button */
 .nav-cta-btn {
   background: var(--orange) !important;
   color: #fff !important;
@@ -130,38 +121,43 @@ img { display: block; max-width: 100%; }
   letter-spacing: 0.1em !important;
   transition: background 0.2s !important;
 }
- 
 .nav-cta-btn:hover { background: var(--orange-light) !important; }
- 
- 
+
+
 /* ================================================================
-   HERO — Original fire/sparks background preserved exactly.
-   Only additions: CTA buttons overlaid at the bottom.
+   HERO — homepage only
+   The logo image, MN badge, and Veteran Owned badge all live
+   inside the background image itself. We must NOT clip them.
+   The title + tagline sit at the bottom of the hero.
    ================================================================ */
 .flashy-header {
   position: relative;
   width: 100%;
-  min-height: 420px;
+  /* tall enough to show the full image including top badges */
+  min-height: 480px;
   background-image: url('/images/Logo/CMN_Logo_3.png');
-  background-size: cover;
+  background-size: contain;       /* show the whole image, no cropping */
+  background-repeat: no-repeat;
   background-position: center top;
+  background-color: #000;         /* fill gaps around the image */
   display: flex;
-  align-items: center;
+  align-items: flex-end;          /* pin content to the bottom */
   justify-content: center;
   text-align: center;
   overflow: visible;
 }
- 
-/* Subtle gradient at bottom so CTA buttons feel grounded in the image */
+
+/* Dark fade at the bottom so text pops over the image */
 .flashy-header::after {
   content: '';
   position: absolute;
   bottom: 0; left: 0; right: 0;
-  height: 140px;
-  background: linear-gradient(to bottom, transparent, rgba(8, 8, 8, 0.88));
+  height: 180px;
+  background: linear-gradient(to bottom, transparent, rgba(5, 5, 5, 0.92));
   pointer-events: none;
+  z-index: 1;
 }
- 
+
 .header-content {
   position: relative;
   z-index: 2;
@@ -169,46 +165,41 @@ img { display: block; max-width: 100%; }
   flex-direction: column;
   align-items: center;
   width: 100%;
-  padding: 20px 24px 40px;
-  justify-content: flex-end;
-  min-height: 420px;
+  padding: 0 24px 36px;
 }
- 
+
 .header-title {
   font-family: 'Oswald', sans-serif;
-  font-size: clamp(28px, 5vw, 52px);
+  font-size: clamp(26px, 4.5vw, 50px);
   font-weight: 700;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   color: #ff6a00;
   text-shadow:
-    0 0 8px rgba(0, 0, 0, 0.9),
-    0 0 16px rgba(255, 106, 0, 1),
-    0 0 40px rgba(255, 106, 0, 0.7),
-    0 0 80px rgba(255, 80, 0, 0.4);
-  background: rgba(0, 0, 0, 0.35);
-  padding: 8px 24px;
-  border-radius: 4px;
-  margin-bottom: 10px;
+    0 0 6px rgba(0,0,0,1),
+    0 0 14px rgba(255,106,0,1),
+    0 0 36px rgba(255,106,0,0.8),
+    0 0 72px rgba(255,80,0,0.5);
+  margin-bottom: 8px;
 }
- 
+
 .header-tagline {
-  font-size: clamp(13px, 2vw, 16px);
-  letter-spacing: 0.12em;
+  font-size: clamp(11px, 1.6vw, 14px);
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: rgba(240, 237, 232, 0.85);
-  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.7);
+  color: rgba(240, 237, 232, 0.9);
+  text-shadow: 0 1px 8px rgba(0,0,0,0.9);
   margin-bottom: 0;
 }
- 
-/* CTA buttons — new addition, sit at the bottom of the hero */
+
+/* CTA buttons inside hero */
 .hero-cta-group {
   display: flex;
   align-items: center;
   gap: 14px;
-  margin-top: 32px;
+  margin-top: 28px;
 }
- 
+
 .btn-primary {
   display: inline-block;
   background: var(--orange);
@@ -222,19 +213,18 @@ img { display: block; max-width: 100%; }
   border-radius: 4px;
   border: none;
   cursor: pointer;
-  box-shadow: 0 0 28px rgba(232, 98, 10, 0.45);
+  box-shadow: 0 0 24px rgba(232,98,10,0.4);
   transition: background 0.2s, box-shadow 0.2s;
 }
- 
 .btn-primary:hover {
   background: var(--orange-light);
-  box-shadow: 0 0 36px rgba(255, 140, 58, 0.5);
+  box-shadow: 0 0 36px rgba(255,140,58,0.5);
 }
- 
+
 .btn-secondary {
   display: inline-block;
   background: transparent;
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(255,255,255,0.85);
   font-family: 'Source Sans 3', sans-serif;
   font-size: 13px;
   font-weight: 600;
@@ -242,19 +232,18 @@ img { display: block; max-width: 100%; }
   text-transform: uppercase;
   padding: 13px 24px;
   border-radius: 4px;
-  border: 1px solid rgba(255, 255, 255, 0.25);
+  border: 1px solid rgba(255,255,255,0.28);
   cursor: pointer;
   transition: border-color 0.2s, color 0.2s;
 }
- 
 .btn-secondary:hover {
-  border-color: rgba(255, 255, 255, 0.55);
+  border-color: rgba(255,255,255,0.6);
   color: #fff;
 }
- 
- 
+
+
 /* ================================================================
-   TRUST STRIP — new section immediately below hero
+   TRUST STRIP — below hero on homepage
    ================================================================ */
 .trust-strip {
   display: flex;
@@ -263,7 +252,7 @@ img { display: block; max-width: 100%; }
   border-top: 2px solid var(--orange);
   border-bottom: 1px solid var(--border-dim);
 }
- 
+
 .trust-item {
   flex: 1;
   display: flex;
@@ -274,18 +263,16 @@ img { display: block; max-width: 100%; }
   border-right: 1px solid var(--border-dim);
   transition: background 0.2s;
 }
- 
 .trust-item:last-child { border-right: none; }
- 
-.trust-item:hover { background: rgba(255, 255, 255, 0.03); }
- 
+.trust-item:hover { background: rgba(255,255,255,0.03); }
+
 .trust-icon {
   font-size: 22px;
   color: var(--orange);
   flex-shrink: 0;
   line-height: 1;
 }
- 
+
 .trust-label {
   font-family: 'Oswald', sans-serif;
   font-size: 15px;
@@ -294,23 +281,23 @@ img { display: block; max-width: 100%; }
   letter-spacing: 0.02em;
   line-height: 1.2;
 }
- 
+
 .trust-sub {
   font-size: 11px;
   color: var(--muted);
   margin-top: 2px;
   letter-spacing: 0.04em;
 }
- 
- 
+
+
 /* ================================================================
-   SERVICES SECTION
+   HOMEPAGE SERVICES SECTION
    ================================================================ */
 .services {
   padding: 64px 0;
   background: var(--dark);
 }
- 
+
 .section-eyebrow {
   font-size: 11px;
   font-weight: 700;
@@ -319,7 +306,7 @@ img { display: block; max-width: 100%; }
   color: var(--orange);
   margin-bottom: 8px;
 }
- 
+
 .section-title {
   font-family: 'Oswald', sans-serif;
   font-size: 32px;
@@ -328,15 +315,15 @@ img { display: block; max-width: 100%; }
   color: #fff;
   margin-bottom: 36px;
 }
- 
+
 .service-list {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 16px;
 }
- 
+
 .service-link { display: block; text-decoration: none; color: inherit; }
- 
+
 .service-card {
   background: var(--dark2);
   border: 1px solid var(--border-dim);
@@ -346,19 +333,18 @@ img { display: block; max-width: 100%; }
   transition: background 0.2s, border-color 0.2s;
   height: 100%;
 }
- 
 .service-link:hover .service-card {
   background: var(--dark3);
   border-color: var(--border-orange);
   border-left-color: var(--orange-light);
 }
- 
+
 .service-icon {
   font-size: 24px;
   margin-bottom: 12px;
   line-height: 1;
 }
- 
+
 .service-card h3 {
   font-family: 'Oswald', sans-serif;
   font-size: 18px;
@@ -367,32 +353,143 @@ img { display: block; max-width: 100%; }
   color: #fff;
   margin-bottom: 8px;
 }
- 
+
 .service-card p {
   font-size: 14px;
   color: var(--muted);
   line-height: 1.65;
 }
- 
- 
+
+
 /* ================================================================
-   FOOTER
+   INNER PAGE HEADER BANNER
+   (used on service pages, about, gallery, quote)
+   ================================================================ */
+.page-header {
+  background: var(--dark2);
+  border-bottom: 2px solid var(--orange);
+  padding: 40px 32px 36px;
+  text-align: center;
+}
+
+.page-header h1 {
+  font-family: 'Oswald', sans-serif;
+  font-size: clamp(26px, 4vw, 42px);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #fff;
+  text-shadow: 0 0 30px rgba(232,98,10,0.25);
+}
+
+
+/* ================================================================
+   INNER PAGE CONTENT
+   (service pages: .custom-fab-section)
+   ================================================================ */
+.custom-fab-section {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 56px 32px 72px;
+  flex: 1;
+}
+
+.custom-fab-section > h1 {
+  /* hide the duplicate h1 — the .page-header already shows it */
+  display: none;
+}
+
+.custom-fab-section > p {
+  font-size: 16px;
+  color: var(--muted);
+  line-height: 1.8;
+  margin-bottom: 32px;
+}
+
+.custom-fab-section h2 {
+  font-family: 'Oswald', sans-serif;
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: #fff;
+  margin: 36px 0 16px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border-dim);
+}
+
+.fab-list {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 24px;
+}
+
+.fab-list li {
+  font-size: 15px;
+  color: var(--muted);
+  padding: 10px 0 10px 20px;
+  border-bottom: 1px solid var(--border-dim);
+  position: relative;
+  line-height: 1.5;
+}
+
+.fab-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--orange);
+}
+
+/* CTA button on service pages */
+.cta-button {
+  display: inline-block;
+  margin-top: 36px;
+  background: var(--orange);
+  color: #fff;
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 14px 30px;
+  border-radius: 4px;
+  transition: background 0.2s, box-shadow 0.2s;
+  box-shadow: 0 0 20px rgba(232,98,10,0.3);
+}
+.cta-button:hover {
+  background: var(--orange-light);
+  box-shadow: 0 0 30px rgba(255,140,58,0.45);
+}
+
+
+/* ================================================================
+   FOOTER — shared via components/footer.html
    ================================================================ */
 .footer {
   background: #0a0a0a;
   border-top: 1px solid var(--border-dim);
   margin-top: auto;
 }
- 
+
 .footer-content {
   display: grid;
-  grid-template-columns: 1.2fr 2fr 0.8fr 0.8fr;
+  grid-template-columns: 1fr 1fr;
   gap: 36px;
   max-width: 1100px;
   margin: 0 auto;
   padding: 48px 32px 36px;
 }
- 
+
+/* Override for homepage footer which has 4 columns */
+.footer-content.four-col {
+  grid-template-columns: 1.2fr 2fr 0.8fr 0.8fr;
+}
+
+.footer h4,
 .footer-heading {
   font-family: 'Oswald', sans-serif;
   font-size: 12px;
@@ -402,46 +499,44 @@ img { display: block; max-width: 100%; }
   color: var(--orange);
   margin-bottom: 16px;
 }
- 
+
 .footer-section p,
-.footer-section li {
+.footer-section li,
+.footer p,
+.footer li {
   font-size: 13px;
   color: var(--muted);
   margin-bottom: 8px;
   line-height: 1.6;
 }
- 
-.footer-section a {
+
+.footer-section a,
+.footer a {
   color: var(--muted);
   transition: color 0.2s;
 }
- 
-.footer-section a:hover { color: var(--orange-light); }
- 
-/* Reviews inside footer */
+.footer-section a:hover,
+.footer a:hover { color: var(--orange-light); }
+
+/* Footer review slider */
 .review-box { position: relative; }
- 
 .review-slider { position: relative; min-height: 110px; }
- 
-.review-slide {
-  display: none;
-  animation: fadeIn 0.4s ease;
-}
- 
+
+.review-slide { display: none; animation: fadeIn 0.4s ease; }
 .review-slide.active { display: block; }
- 
+
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(4px); }
   to   { opacity: 1; transform: translateY(0); }
 }
- 
+
 .review-stars {
   color: var(--orange);
   font-size: 13px;
   letter-spacing: 2px;
   margin-bottom: 8px;
 }
- 
+
 .review-slide p {
   font-size: 13px;
   color: var(--muted);
@@ -449,7 +544,7 @@ img { display: block; max-width: 100%; }
   line-height: 1.65;
   margin-bottom: 8px;
 }
- 
+
 .review-author {
   font-size: 11px;
   font-weight: 700;
@@ -457,77 +552,72 @@ img { display: block; max-width: 100%; }
   text-transform: uppercase;
   color: var(--steel);
 }
- 
-/* Slider dots */
-.review-dots {
-  display: flex;
-  gap: 6px;
-  margin-top: 12px;
-}
- 
+
+.review-dots { display: flex; gap: 6px; margin-top: 12px; }
+
 .dot {
-  width: 7px;
-  height: 7px;
+  width: 7px; height: 7px;
   border-radius: 50%;
   background: var(--border-dim);
   border: 1px solid rgba(255,255,255,0.15);
   cursor: pointer;
   transition: background 0.2s;
 }
- 
 .dot.active { background: var(--orange); border-color: var(--orange); }
- 
-/* Footer quick links list */
+
 .footer-right ul { padding: 0; }
 .footer-right li { margin-bottom: 8px; }
- 
+
 /* Footer bottom bar */
 .footer-bottom {
-  border-top: 1px solid rgba(255, 255, 255, 0.04);
+  border-top: 1px solid rgba(255,255,255,0.04);
   text-align: center;
   padding: 14px 32px;
 }
- 
 .footer-bottom p {
   font-size: 11px;
-  color: #888888;
+  color: #888;
   letter-spacing: 0.05em;
 }
- 
- 
+
+
 /* ================================================================
-   RESPONSIVE — Tablet & Mobile
+   RESPONSIVE
    ================================================================ */
 @media (max-width: 900px) {
-  .footer-content {
+  .footer-content,
+  .footer-content.four-col {
     grid-template-columns: 1fr 1fr;
     gap: 28px;
   }
 }
- 
+
 @media (max-width: 680px) {
   .navbar { padding: 0 16px; }
-  .nav-left, .nav-right { gap: 16px; }
+  .nav-left, .nav-right { gap: 14px; }
   .navbar a { font-size: 11px; }
- 
-  .flashy-header { min-height: 320px; }
- 
+
+  .flashy-header { min-height: 340px; }
+
   .trust-strip { flex-wrap: wrap; }
   .trust-item {
     flex: 1 1 50%;
     border-right: none;
     border-bottom: 1px solid var(--border-dim);
   }
- 
+
   .service-list { grid-template-columns: 1fr; }
- 
-  .footer-content {
+
+  .footer-content,
+  .footer-content.four-col {
     grid-template-columns: 1fr;
     gap: 24px;
     padding: 36px 20px 28px;
   }
- 
+
   .hero-cta-group { flex-direction: column; gap: 10px; }
   .btn-primary, .btn-secondary { width: 100%; text-align: center; }
+
+  .custom-fab-section { padding: 40px 20px 56px; }
+  .page-header { padding: 28px 20px 24px; }
 }
- 

@@ -13,7 +13,7 @@
 <body>
 <div class="page-wrap">
 
-  <!-- ===================== NAVBAR ===================== -->
+  <!-- NAVBAR -->
   <nav class="navbar">
     <ul class="nav-left">
       <li><a href="/">Home</a></li>
@@ -28,7 +28,6 @@
       </li>
       <li><a href="/store">Store</a></li>
     </ul>
-
     <ul class="nav-right">
       <li><a href="/quote" class="nav-cta-btn">Get a Quote</a></li>
       <li><a href="/about_us.html">About Us</a></li>
@@ -36,24 +35,19 @@
     </ul>
   </nav>
 
-  <!-- ===================== HERO ===================== -->
-  <!-- Original fire/sparks background and glowing logo — kept exactly as-is -->
+  <!-- HERO — original fire/sparks image, badges fully visible, title at bottom -->
   <header class="flashy-header">
-    <div class="container">
-      <div class="header-content">
-        <h1 class="header-title">CMN Welding and Hydraulics</h1>
-        <p class="header-tagline">Custom metalwork built with precision, strength, and craftsmanship.</p>
-        <!-- NEW: CTA buttons overlaid at the bottom of the hero -->
-        <div class="hero-cta-group">
-          <a href="/quote" class="btn-primary">Get a Free Quote</a>
-          <a href="/gallery" class="btn-secondary">View Our Work</a>
-        </div>
+    <div class="header-content">
+      <h1 class="header-title">CMN Welding and Hydraulics</h1>
+      <p class="header-tagline">Custom metalwork built with precision, strength, and craftsmanship.</p>
+      <div class="hero-cta-group">
+        <a href="/quote" class="btn-primary">Get a Free Quote</a>
+        <a href="/gallery" class="btn-secondary">View Our Work</a>
       </div>
     </div>
   </header>
 
-  <!-- ===================== TRUST STRIP ===================== -->
-  <!-- NEW: Quick trust signals immediately below the hero -->
+  <!-- TRUST STRIP -->
   <div class="trust-strip">
     <div class="trust-item">
       <span class="trust-icon">★</span>
@@ -85,7 +79,7 @@
     </div>
   </div>
 
-  <!-- ===================== SERVICES ===================== -->
+  <!-- SERVICES -->
   <section class="services">
     <div class="container">
       <p class="section-eyebrow">What We Do</p>
@@ -123,21 +117,15 @@
     </div>
   </section>
 
-  <!-- ===================== FOOTER ===================== -->
+  <!-- FOOTER -->
   <footer class="footer">
-    <div class="footer-content">
-
-      <!-- Contact -->
+    <div class="footer-content four-col">
       <div class="footer-section contact">
         <h4 class="footer-heading">Contact</h4>
         <p><a href="mailto:cmnwelding@gmail.com">cmnwelding@gmail.com</a></p>
         <p><a href="tel:3202010252">(320) 201-0252</a></p>
-        <p><a href="https://www.google.com/maps?q=17503+232nd+St,+Long+Prairie,+MN+56347" target="_blank">
-          17503 232nd St<br>Long Prairie, MN 56347
-        </a></p>
+        <p><a href="https://www.google.com/maps?q=17503+232nd+St,+Long+Prairie,+MN+56347" target="_blank">17503 232nd St<br>Long Prairie, MN 56347</a></p>
       </div>
-
-      <!-- Reviews -->
       <div class="footer-section review-box">
         <h4 class="footer-heading">Customer Reviews</h4>
         <div class="review-slider">
@@ -162,7 +150,6 @@
             <span class="review-author">— Emily S.</span>
           </div>
         </div>
-        <!-- Slider dots -->
         <div class="review-dots">
           <span class="dot active" onclick="goToSlide(0)"></span>
           <span class="dot" onclick="goToSlide(1)"></span>
@@ -170,14 +157,10 @@
           <span class="dot" onclick="goToSlide(3)"></span>
         </div>
       </div>
-
-      <!-- Follow Us -->
       <div class="footer-section">
         <h4 class="footer-heading">Follow Us</h4>
         <p><a href="https://www.facebook.com/p/CMN-Welding-LLC-61551668291724/" target="_blank">Facebook</a></p>
       </div>
-
-      <!-- Quick Links -->
       <div class="footer-section footer-right">
         <h4 class="footer-heading">Quick Links</h4>
         <ul>
@@ -187,21 +170,18 @@
           <li><a href="/gallery">Gallery</a></li>
         </ul>
       </div>
-
     </div>
     <div class="footer-bottom">
       <p>© 2026 CMN Welding and Hydraulics — All rights reserved.</p>
     </div>
   </footer>
 
-</div><!-- /.page-wrap -->
+</div>
 
 <script>
-  // ── Review slider ──────────────────────────────────────
   let currentSlide = 0;
   const slides = document.querySelectorAll('.review-slide');
   const dots   = document.querySelectorAll('.dot');
-
   function goToSlide(n) {
     slides[currentSlide].classList.remove('active');
     dots[currentSlide].classList.remove('active');
@@ -209,17 +189,10 @@
     slides[currentSlide].classList.add('active');
     dots[currentSlide].classList.add('active');
   }
-
-  // Auto-rotate every 5 seconds
-  setInterval(() => {
-    goToSlide((currentSlide + 1) % slides.length);
-  }, 5000);
-
-  // ── Navbar: highlight active page ─────────────────────
-  document.querySelectorAll('.navbar a').forEach(link => {
-    if (link.href === window.location.href) link.classList.add('active');
+  setInterval(() => goToSlide((currentSlide + 1) % slides.length), 5000);
+  document.querySelectorAll('.navbar a').forEach(l => {
+    if (l.href === window.location.href) l.classList.add('active');
   });
 </script>
-
 </body>
 </html>
