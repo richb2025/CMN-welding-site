@@ -199,7 +199,7 @@
                     <div class="contact-item-icon">📧</div>
                     <div class="contact-item-text">
                         <span>Email</span>
-                        <strong>cmnwelding@gmail.com</strong>
+                        <strong><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="0b6866657c6e676f62656c4b6c666a626725686466">[email&#160;protected]</a></strong>
                     </div>
                 </div>
 
@@ -225,47 +225,49 @@
                 <div class="contact-form">
                     <div class="section-label" style="margin-bottom:24px;">Project Inquiry</div>
 
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="fname">First Name</label><required>
-                            <input type="text" id="fname" name="fname" placeholder="John" required>
+                    <form id="quoteForm" novalidate>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="fname">First Name*</label>
+                                <input type="text" id="fname" name="fname" placeholder="John" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="lname">Last Name*</label>
+                                <input type="text" id="lname" name="lname" placeholder="Smith" required>
+                            </div>
                         </div>
+
                         <div class="form-group">
-                            <label for="lname">Last Name</label>
-                            <input type="text" id="lname" name="lname" placeholder="Smith" required>
+                            <label for="email">Email Address*</label>
+                            <input type="email" id="email" name="email" placeholder="john@yourbusiness.com" required>
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        <label for="email">Email Address</label>
-                        <input type="email" id="email" name="email" placeholder="john@yourbusiness.com" required>
-                    </div>
+                        <div class="form-group">
+                            <label for="business">Business Name</label>
+                            <input type="text" id="business" name="business" placeholder="Your Business Name">
+                        </div>
 
-                    <div class="form-group">
-                        <label for="business">Business Name</label>
-                        <input type="text" id="business" name="business" placeholder="Your Business Name" required>
-                    </div>
+                        <div class="form-group">
+                            <label for="service">What Are You Looking For?*</label>
+                            <select id="service" name="service" required>
+                                <option value="" disabled selected>Choose your project</option>
+                                <option>Custom Fabrication</option>
+                                <option>Welding</option>
+                                <option>Repairs &amp; Modifications</option>
+                                <option>Hydraulic Repair</option>
+                                <option>Multiple Services / Not Sure</option>
+                            </select>
+                        </div>
 
-                    <div class="form-group">
-                        <label for="service">What Are You Looking For?</label>
-                        <select id="service" name="service" required>
-                            <option value="" disabled selected>Choose your project</option>
-                            <option>Custom Fabrication</option>
-                            <option>Welding</option>
-                            <option>Repairs &amp; Modifications</option>
-                            <option>Hydraulic Repair</option>
-                            <option>Multiple Services / Not Sure</option>
-                        </select>
-                    </div>
+                        <div class="form-group">
+                            <label for="message">Tell Us About Your Project*</label>
+                            <textarea id="message" name="message" placeholder="Give us the details — what do you need, what's your timeline, any budget in mind?" required></textarea>
+                        </div>
 
-                    <div class="form-group">
-                        <label for="message">Tell Us About Your Project</label>
-                        <textarea id="message" name="message" placeholder="Give us the details — what do you need, what's your timeline, any budget in mind?" required></textarea>
-                    </div>
-
-                    <button type="button" class="btn-primary" style="width:100%; cursor:pointer; border:none; font-family:'Nunito',sans-serif; font-size:15px;">
-                        Send Message 🚀
-                    </button>
+                        <button type="submit" class="btn-primary" style="width:100%; cursor:pointer; border:none; font-family:'Nunito',sans-serif; font-size:15px;">
+                            Send Message 🚀
+                        </button>
+                    </form>
                 </div>
             </div>
 
@@ -275,15 +277,13 @@
 
     <!--footer-->
     <div id="footer-placeholder"></div>
-    <script src="../js/footer.js"></script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="../js/footer.js"></script>
 
     <script>
-        // Fixed typo: querySelector (was querSelector)
-        document.querySelector(".contact-form .btn-primary").addEventListener("click", function() {
-            const form = this.closest(".contact-form");
-            form.innerHTML = '<div id="quoteSuccess" style="text-align:center; padding: 48px 0;"><div style="font-size:48px; margin-bottom:16px;">✅</div><h3 style="font-family:Oswald,sans-serif; color:#fff; font-size:22px; margin-bottom:12px;">Message Sent!</h3><p style="color:#9A9590;">We\'ll get back to you within 1–2 business days.</p></div>';
-        });
-    </script>
-
-    </body>
-</html>
+        document.getElementById("quoteForm").addEventListener("submit", function(e) {
+            e.preventDefault();
+            if (!this.checkValidity()) {
+                this.reportValidity();
+                return;
+            }
+            this.closest(".contact-form").innerHTML = '<div id="quoteSuccess" style="text-align:center; padding: 48px 0;"><div style="font-size:48px; margin-bottom:16px;">✅</div><h3 style="fon
