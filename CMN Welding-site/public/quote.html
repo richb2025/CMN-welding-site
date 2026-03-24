@@ -4,8 +4,150 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title> Request a quote - CMN Welding and Hydraulics</title>
-         <link rel="icon" type="image/x-icon" href="../images/Logo/favicon.ico">
+        <link rel="icon" type="image/x-icon" href="../images/Logo/favicon.ico">
         <link rel="stylesheet" href="css/styles.css">
+
+        <!-- Quote-page layout overrides -->
+        <style>
+            /* ── Two-column quote layout ─────────────────────────────── */
+            .quote-layout {
+                display: grid;
+                grid-template-columns: 1fr 1.6fr;
+                gap: 48px;
+                align-items: start;
+            }
+
+            /* Contact info column */
+            .quote-contact-info {
+                display: flex;
+                flex-direction: column;
+                gap: 0;
+            }
+
+            .quote-contact-info .intro-text {
+                font-size: 15px;
+                color: var(--muted);
+                line-height: 1.75;
+                margin-bottom: 28px;
+            }
+
+            .quote-contact-info .contact-item {
+                background: var(--dark2);
+                border: 1px solid var(--border-dim);
+                border-left: 3px solid var(--orange);
+                border-radius: 6px;
+                padding: 16px 18px;
+                margin-bottom: 12px;
+                display: flex;
+                align-items: center;
+                gap: 14px;
+                transition: background 0.2s;
+            }
+
+            .quote-contact-info .contact-item:hover {
+                background: var(--dark3);
+            }
+
+            .quote-contact-info .contact-item-icon {
+                width: 40px;
+                height: 40px;
+                background: rgba(232, 98, 10, 0.1);
+                border: 1px solid var(--border-orange);
+                border-radius: 6px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 18px;
+                flex-shrink: 0;
+            }
+
+            .quote-contact-info .contact-item-text span {
+                font-size: 10px;
+                font-weight: 700;
+                letter-spacing: 0.14em;
+                text-transform: uppercase;
+                color: var(--muted);
+                display: block;
+                margin-bottom: 3px;
+            }
+
+            .quote-contact-info .contact-item-text strong {
+                font-size: 14px;
+                color: var(--text);
+                font-weight: 600;
+            }
+
+            /* Form column */
+            .quote-form-col .contact-form {
+                background: var(--dark2);
+                border: 1px solid var(--border-dim);
+                border-radius: 8px;
+                padding: 36px;
+            }
+
+            .section-label {
+                font-family: 'Oswald', sans-serif;
+                font-size: 11px;
+                font-weight: 700;
+                letter-spacing: 0.18em;
+                text-transform: uppercase;
+                color: var(--orange);
+            }
+
+            /* ── Fix: dark-themed select & options ──────────────────── */
+            .form-group select {
+                background: #1e1e1e;
+                color: var(--text, #F0EDE8);
+                border: 1px solid rgba(255,255,255,0.12);
+            }
+
+            .form-group select option {
+                background: #1e1e1e;
+                color: #F0EDE8;
+            }
+
+            .form-group select:focus {
+                border-color: var(--orange);
+                box-shadow: 0 0 0 3px rgba(232, 98, 10, 0.15);
+            }
+
+            /* Fix all inputs/textareas to match dark theme */
+            .form-group input,
+            .form-group textarea {
+                background: rgba(255,255,255,0.04);
+                border: 1px solid rgba(255,255,255,0.1);
+                color: var(--text, #F0EDE8);
+            }
+
+            .form-group input::placeholder,
+            .form-group textarea::placeholder {
+                color: var(--muted, #9A9590);
+            }
+
+            .form-group input:focus,
+            .form-group textarea:focus {
+                border-color: var(--orange);
+                box-shadow: 0 0 0 3px rgba(232, 98, 10, 0.15);
+            }
+
+            .form-group label {
+                color: var(--muted, #9A9590);
+                font-size: 11px;
+                font-weight: 700;
+                letter-spacing: 0.14em;
+                text-transform: uppercase;
+                display: block;
+                margin-bottom: 8px;
+            }
+
+            /* ── Responsive: stack on small screens ─────────────────── */
+            @media (max-width: 800px) {
+                .quote-layout {
+                    grid-template-columns: 1fr;
+                    gap: 32px;
+                }
+            }
+        </style>
     </head>
     <body>
 
@@ -24,121 +166,124 @@
             </li> 
             <li><a href="/store">Store</a></li>
         </ul> 
-            <ul class="nav-right"> 
-                <li><a href="/quote">Get a Quote</a></li> 
-                <li><a href="/about_us.html">About Us</a></li> 
-                <li><a href="/gallery">Gallery</a></li> 
-            </ul> 
-        </nav>
+        <ul class="nav-right"> 
+            <li><a href="/quote">Get a Quote</a></li> 
+            <li><a href="/about_us.html">About Us</a></li> 
+            <li><a href="/gallery">Gallery</a></li> 
+        </ul> 
+    </nav>
 
+    <!--PAGE HEADER--> 
+    <header class="page-header">
+        <h1>Request a Quote</h1>
+    </header>
 
-        <!--PAGE HEADER--> 
-                <header class="page-header">
-                    <h1>Request a Quote</h1>
-                </header>
+    <!-- TWO-COLUMN QUOTE SECTION -->
+    <section class="custom-fab-section">
 
+        <div class="quote-layout">
 
-    <!-- MATCHED CONTENT BOX -->
-        <section class="custom-fab-section">
-            <h2 style="text-align:center; color:#ff6a00; margin-bottom: 10px">
-                Tell us about your project and we'll get back to you with pricing details
-            </h2>
+            <!-- LEFT: Contact Info -->
+            <div class="quote-contact-info">
+                <p class="intro-text">Tell us about your project and we'll get back to you with pricing details.</p>
 
-            <div class="contact-item">
-        <div class="contact-item-icon">📍</div>
-        <div class="contact-item-text">
-          <span>Location</span>
-          <strong>Minnesota, USA</strong>
-        </div>
-      </div>
+                <div class="contact-item">
+                    <div class="contact-item-icon">📍</div>
+                    <div class="contact-item-text">
+                        <span>Location</span>
+                        <strong>Minnesota, USA</strong>
+                    </div>
+                </div>
 
-      <div class="contact-item">
-        <div class="contact-item-icon">📧</div>
-        <div class="contact-item-text">
-          <span>Email</span>
-          <strong>cmnwelding@gmail.com</strong>
-        </div>
-      </div>
+                <div class="contact-item">
+                    <div class="contact-item-icon">📧</div>
+                    <div class="contact-item-text">
+                        <span>Email</span>
+                        <strong>cmnwelding@gmail.com</strong>
+                    </div>
+                </div>
 
-            <div class="contact-item">
-        <div class="contact-item-icon">⏱️</div>
-        <div class="contact-item-text">
-          <span>Response Time</span>
-          <strong>Within 1-2 Business Day</strong>
-        </div>
-      </div>
+                <div class="contact-item">
+                    <div class="contact-item-icon">⏱️</div>
+                    <div class="contact-item-text">
+                        <span>Response Time</span>
+                        <strong>Within 1–2 Business Days</strong>
+                    </div>
+                </div>
 
-            <div class="contact-item">
-        <div class="contact-item-icon">🕐</div>
-        <div class="contact-item-text">
-          <span>Hours</span>
-          <strong>Mon–Fri, 9am–6pm CT</strong>
-        </div>
-      </div>
-    </div>
+                <div class="contact-item">
+                    <div class="contact-item-icon">🕐</div>
+                    <div class="contact-item-text">
+                        <span>Hours</span>
+                        <strong>Mon–Fri, 9am–6pm CT</strong>
+                    </div>
+                </div>
+            </div>
 
+            <!-- RIGHT: Form -->
+            <div class="quote-form-col">
+                <div class="contact-form">
+                    <div class="section-label" style="margin-bottom:24px;">Project Inquiry</div>
 
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="fname">First Name</label>
+                            <input type="text" id="fname" name="fname" placeholder="John">
+                        </div>
+                        <div class="form-group">
+                            <label for="lname">Last Name</label>
+                            <input type="text" id="lname" name="lname" placeholder="Smith">
+                        </div>
+                    </div>
 
-                
-<div class="contact-form">
-      <div class="section-label" style="margin-bottom:24px;">Project Inquiry</div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" placeholder="john@yourbusiness.com">
+                    </div>
 
-      <div class="form-row">
-        <div class="form-group">
-          <label for="fname">First Name</label>
-          <input type="text" id="fname" name="fname" placeholder="John">
-        </div>
-        <div class="form-group">
-          <label for="lname">Last Name</label>
-          <input type="text" id="lname" name="lname" placeholder="Smith">
-        </div>
-      </div>
+                    <div class="form-group">
+                        <label for="business">Business Name</label>
+                        <input type="text" id="business" name="business" placeholder="Your Business Name">
+                    </div>
 
-      <div class="form-group">
-        <label for="email">Email Address</label>
-        <input type="email" id="email" name="email" placeholder="john@yourbusiness.com">
-      </div>
+                    <div class="form-group">
+                        <label for="service">What Are You Looking For?</label>
+                        <select id="service" name="service">
+                            <option value="" disabled selected>Choose your project</option>
+                            <option>Custom Fabrication</option>
+                            <option>Welding</option>
+                            <option>Repairs &amp; Modifications</option>
+                            <option>Hydraulic Repair</option>
+                            <option>Multiple Services / Not Sure</option>
+                        </select>
+                    </div>
 
-      <div class="form-group">
-        <label for="business">Business Name</label>
-        <input type="text" id="business" name="business" placeholder="Your Business Name">
-      </div>
+                    <div class="form-group">
+                        <label for="message">Tell Us About Your Project</label>
+                        <textarea id="message" name="message" placeholder="Give us the details — what do you need, what's your timeline, any budget in mind?"></textarea>
+                    </div>
 
-      <div class="form-group">
-        <label for="service">What Are You Looking For?</label>
-        <select id="service" name="service">
-          <option value="" disabled selected>Choose your project</option>
-          <option>custom fabrication</option>
-          <option>welding</option>
-          <option>repairs and modifications</option>
-          <option>hydraulic repair</option>
-          <option>Multiple Services / Not Sure</option>
-        </select>
-      </div>
+                    <button type="button" class="btn-primary" style="width:100%; cursor:pointer; border:none; font-family:'Nunito',sans-serif; font-size:15px;">
+                        Send Message 🚀
+                    </button>
+                </div>
+            </div>
 
-      <div class="form-group">
-        <label for="message">Tell Us About Your Project</label>
-        <textarea id="message" name="message" placeholder="Give us the details — what do you need, what's your timeline, any budget in mind?"></textarea>
-      </div>
+        </div><!-- /.quote-layout -->
 
-      <button type="button" class="btn-primary" style="width:100%; cursor:pointer; border:none; font-family:'Nunito',sans-serif; font-size:15px;">Send Message 🚀</button>
-    </div>
+    </section>
 
-  </div>
-</section>
+    <!--footer-->
+    <div id="footer-placeholder"></div>
+    <script src="../js/footer.js"></script>
 
-<!--footer-->
-<div id="footer-placeholder"></div>
-<script src="../js/footer.js"></script>
-
-
-         <script>
-            document.querSelector(".quote-form").addEventListener("submit", function(e) {
-                e.preventDefault();
-                this.style.display = "none";
-                document.getElementById("quoteSuccess").style.display = "block";
-            })
-         </script>
+    <script>
+        // Fixed typo: querySelector (was querSelector)
+        document.querySelector(".contact-form .btn-primary").addEventListener("click", function() {
+            const form = this.closest(".contact-form");
+            form.innerHTML = '<div id="quoteSuccess" style="text-align:center; padding: 48px 0;"><div style="font-size:48px; margin-bottom:16px;">✅</div><h3 style="font-family:Oswald,sans-serif; color:#fff; font-size:22px; margin-bottom:12px;">Message Sent!</h3><p style="color:#9A9590;">We\'ll get back to you within 1–2 business days.</p></div>';
+        });
+    </script>
 
     </body>
 </html>
