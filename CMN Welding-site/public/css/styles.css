@@ -84,13 +84,13 @@ img { display: block; max-width: 100%; }
 .dropdown-content {
   display: none;
   position: absolute;
-  top: calc(100% + 4px);
+  top: 100%;
   left: 0;
   background: #0e0e0e;
   border: 1px solid var(--border-orange);
   border-radius: 6px;
   min-width: 210px;
-  padding: 6px 0;
+  padding:10px 0 6px;
   z-index: 200;
 }
 
