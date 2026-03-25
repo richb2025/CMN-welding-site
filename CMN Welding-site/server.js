@@ -51,3 +51,7 @@ app.get('/store', (req, res) => {
     res.sendFile(__dirname + '/public/Store.html');
 });
 
+app.get('/cnc_plasma_cutter', (req, res) => {
+    res.sendFile(__dirname + '/public/CNC_plasma_cutter.html');
+});
+
