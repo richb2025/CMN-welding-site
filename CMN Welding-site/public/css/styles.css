@@ -43,6 +43,21 @@ img { display: block; max-width: 100%; }
 .page-wrap { display: flex; flex-direction: column; min-height: 100vh; }
 
 
+
+
+
+/* ================================================================
+   STORE PAGE — temporary coming soon video
+     (this will be removed once the store is live)
+   ================================================================ */
+.store-video {
+    max-width: 400px;  /* Adjust this value to whatever size looks good */
+    width: 100%;
+    display: block;
+    margin: 20px auto;
+}
+
+
 /* ================================================================
    NAVBAR
    ================================================================ */
