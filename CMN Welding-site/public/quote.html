@@ -151,28 +151,96 @@
     </head>
     <body>
 
-<!-- NAVIGATION BAR -->
-    <nav class="navbar">
-        <ul class="nav-left"> 
+<!-- NAVBAR -->
+<nav class="navbar">
+
+    <!-- Left links -->
+    <ul class="nav-left">
+        <li><a href="/">Home</a></li>
+        <li class="dropdown">
+            <a class="dropbtn" href="#">Services ▾</a>
+            <ul class="dropdown-content">
+                <li><a href="/services/Custom_Fab.html">Custom Fabrication</a></li>
+                <li><a href="/services/Mig_Tig_stick.html">MIG, TIG, &amp; Stick Welding</a></li>
+                <li><a href="/services/Repair_Mod.html">Repairs &amp; Modifications</a></li>
+                <li><a href="/services/Hydraulic_Repair.html">Hydraulic Repair</a></li>
+                <li><a href="/services/CNC_plasma_cutter.html">CNC Plasma Cutting</a></li>
+            </ul>
+        </li>
+        <li><a href="/store">Store</a></li>
+    </ul>
+
+    <!-- Right links -->
+    <ul class="nav-right">
+        <li><a href="/quote" class="nav-cta-btn">Get a Quote</a></li>
+        <li><a href="/about_us.html">About Us</a></li>
+        <li><a href="/gallery">Gallery</a></li>
+    </ul>
+
+    <!-- Hamburger button (mobile only) -->
+    <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <!-- Mobile menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <ul class="mobile-nav-links">
             <li><a href="/">Home</a></li>
-            <li class="dropdown"> 
-                <a class="dropbtn">Services</a> 
-                <ul class="dropdown-content"> 
-                    <li><a href="/services/Custom_Fab.html">Custom Fabrication</a></li> 
-                    <li><a href="/services/Mig_Tig_stick.html">MIG, TIG, & Stick Welding</a></li> 
-                    <li><a href="/services/Repair_Mod.html">Repairs & Modifications</a></li> 
+
+            <!-- Services expandable -->
+            <li class="mobile-dropdown">
+                <button class="mobile-dropdown-btn" id="mobileServicesBtn">
+                    Services <span class="mobile-arrow">▾</span>
+                </button>
+                <ul class="mobile-dropdown-content" id="mobileServicesMenu">
+                    <li><a href="/services/Custom_Fab.html">Custom Fabrication</a></li>
+                    <li><a href="/services/Mig_Tig_stick.html">MIG, TIG, &amp; Stick Welding</a></li>
+                    <li><a href="/services/Repair_Mod.html">Repairs &amp; Modifications</a></li>
                     <li><a href="/services/Hydraulic_Repair.html">Hydraulic Repair</a></li>
                     <li><a href="/services/CNC_plasma_cutter.html">CNC Plasma Cutting</a></li>
-                </ul> 
-            </li> 
+                </ul>
+            </li>
+
             <li><a href="/store">Store</a></li>
-        </ul> 
-        <ul class="nav-right"> 
-            <li><a href="/quote">Get a Quote</a></li> 
-            <li><a href="/about_us.html">About Us</a></li> 
-            <li><a href="/gallery">Gallery</a></li> 
-        </ul> 
-    </nav>
+            <li><a href="/about_us.html">About Us</a></li>
+            <li><a href="/gallery">Gallery</a></li>
+            <li><a href="/quote" class="mobile-cta-btn">Get a Quote</a></li>
+        </ul>
+    </div>
+
+</nav>
+
+<!-- Navbar JS — place before </body> or in your main JS file -->
+<script>
+    const hamburger   = document.getElementById("hamburger");
+    const mobileMenu  = document.getElementById("mobileMenu");
+    const servicesBtn = document.getElementById("mobileServicesBtn");
+    const servicesMenu = document.getElementById("mobileServicesMenu");
+
+    // Toggle main mobile menu
+    hamburger.addEventListener("click", function () {
+        const isOpen = mobileMenu.classList.toggle("open");
+        hamburger.classList.toggle("open", isOpen);
+        hamburger.setAttribute("aria-expanded", isOpen);
+    });
+
+    // Toggle services sub-menu
+    servicesBtn.addEventListener("click", function () {
+        const isOpen = servicesMenu.classList.toggle("open");
+        servicesBtn.classList.toggle("open", isOpen);
+    });
+
+    // Close mobile menu when any link is clicked
+    mobileMenu.querySelectorAll("a").forEach(function (link) {
+        link.addEventListener("click", function () {
+            mobileMenu.classList.remove("open");
+            hamburger.classList.remove("open");
+            hamburger.setAttribute("aria-expanded", false);
+        });
+    });
+</script>
 
     <!--PAGE HEADER--> 
     <header class="page-header">
@@ -272,19 +340,89 @@
                 </div>
             </div>
 
-        </div><!-- /.quote-layout -->
+        </div>
 
     </section>
 
+    <!-- CONFIRMATION MODAL -->
+    <div id="quoteModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <div class="modal-box">
+            <div class="modal-icon">✅</div>
+            <h3 class="modal-title" id="modalTitle">Message Sent!</h3>
+            <p class="modal-body">
+                Thanks for reaching out! We've received your project inquiry and will get back to you within <strong>1–2 business days</strong>.
+            </p>
+            <button class="modal-close-btn" onclick="closeModal()">Got It</button>
+        </div>
+    </div>
+ 
     <!--footer-->
     <div id="footer-placeholder"></div>
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="../js/footer.js"></script>
-
+    <script src="../js/footer.js"></script>
+ 
     <script>
-        document.getElementById("quoteForm").addEventListener("submit", function(e) {
+        // ── Modal helpers ────────────────────────────────────────────
+        function openModal() {
+            document.getElementById("quoteModal").classList.add("active");
+        }
+ 
+        function closeModal() {
+            document.getElementById("quoteModal").classList.remove("active");
+        }
+ 
+        // Close when clicking the dark backdrop
+        document.getElementById("quoteModal").addEventListener("click", function(e) {
+            if (e.target === this) closeModal();
+        });
+ 
+        // Close on Escape key
+        document.addEventListener("keydown", function(e) {
+            if (e.key === "Escape") closeModal();
+        });
+ 
+        // ── Form submit ──────────────────────────────────────────────
+        document.getElementById("quoteForm").addEventListener("submit", async function(e) {
             e.preventDefault();
+ 
             if (!this.checkValidity()) {
                 this.reportValidity();
                 return;
             }
-            this.closest(".contact-form").innerHTML = '<div id="quoteSuccess" style="text-align:center; padding: 48px 0;"><div style="font-size:48px; margin-bottom:16px;">✅</div><h3 style="fon
+ 
+            const btn = document.getElementById("submitBtn");
+            btn.textContent = "Sending…";
+            btn.disabled = true;
+ 
+            const payload = {
+                fname:    document.getElementById("fname").value.trim(),
+                lname:    document.getElementById("lname").value.trim(),
+                email:    document.getElementById("email").value.trim(),
+                business: document.getElementById("business").value.trim(),
+                service:  document.getElementById("service").value,
+                message:  document.getElementById("message").value.trim(),
+            };
+ 
+            try {
+                const res = await fetch("/api/quote", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(payload),
+                });
+ 
+                if (res.ok) {
+                    this.reset();
+                    openModal();
+                } else {
+                    alert("Something went wrong. Please email us directly at cmnwelding@gmail.com");
+                }
+            } catch (err) {
+                alert("Could not connect to the server. Please email us directly at cmnwelding@gmail.com");
+            }
+ 
+            btn.textContent = "Send Message 🚀";
+            btn.disabled = false;
+        });
+    </script>
+ 
+    </body>
+</html>

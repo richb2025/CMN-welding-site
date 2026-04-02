@@ -14,27 +14,95 @@
 <div class="page-wrap">
 
   <!-- NAVBAR -->
-  <nav class="navbar">
+<nav class="navbar">
+
+    <!-- Left links -->
     <ul class="nav-left">
-      <li><a href="/">Home</a></li>
-      <li class="dropdown">
-        <a class="dropbtn" href="#">Services ▾</a>
-        <ul class="dropdown-content">
-          <li><a href="/services/Custom_Fab.html">Custom Fabrication</a></li>
-          <li><a href="/services/Mig_Tig_stick.html">MIG, TIG, &amp; Stick Welding</a></li>
-          <li><a href="/services/Repair_Mod.html">Repairs &amp; Modifications</a></li>
-          <li><a href="/services/Hydraulic_Repair.html">Hydraulic Repair</a></li>
-          <li><a href="/services/CNC_plasma_cutter.html">CNC Plasma Cutting</a></li>
-        </ul>
-      </li>
-      <li><a href="/store">Store</a></li>
+        <li><a href="/">Home</a></li>
+        <li class="dropdown">
+            <a class="dropbtn" href="#">Services ▾</a>
+            <ul class="dropdown-content">
+                <li><a href="/services/Custom_Fab.html">Custom Fabrication</a></li>
+                <li><a href="/services/Mig_Tig_stick.html">MIG, TIG, &amp; Stick Welding</a></li>
+                <li><a href="/services/Repair_Mod.html">Repairs &amp; Modifications</a></li>
+                <li><a href="/services/Hydraulic_Repair.html">Hydraulic Repair</a></li>
+                <li><a href="/services/CNC_plasma_cutter.html">CNC Plasma Cutting</a></li>
+            </ul>
+        </li>
+        <li><a href="/store">Store</a></li>
     </ul>
+
+    <!-- Right links -->
     <ul class="nav-right">
-      <li><a href="/quote" class="nav-cta-btn">Get a Quote</a></li>
-      <li><a href="/about_us.html">About Us</a></li>
-      <li><a href="/gallery">Gallery</a></li>
+        <li><a href="/quote" class="nav-cta-btn">Get a Quote</a></li>
+        <li><a href="/about_us.html">About Us</a></li>
+        <li><a href="/gallery">Gallery</a></li>
     </ul>
-  </nav>
+
+    <!-- Hamburger button (mobile only) -->
+    <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <!-- Mobile menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <ul class="mobile-nav-links">
+            <li><a href="/">Home</a></li>
+
+            <!-- Services expandable -->
+            <li class="mobile-dropdown">
+                <button class="mobile-dropdown-btn" id="mobileServicesBtn">
+                    Services <span class="mobile-arrow">▾</span>
+                </button>
+                <ul class="mobile-dropdown-content" id="mobileServicesMenu">
+                    <li><a href="/services/Custom_Fab.html">Custom Fabrication</a></li>
+                    <li><a href="/services/Mig_Tig_stick.html">MIG, TIG, &amp; Stick Welding</a></li>
+                    <li><a href="/services/Repair_Mod.html">Repairs &amp; Modifications</a></li>
+                    <li><a href="/services/Hydraulic_Repair.html">Hydraulic Repair</a></li>
+                    <li><a href="/services/CNC_plasma_cutter.html">CNC Plasma Cutting</a></li>
+                </ul>
+            </li>
+
+            <li><a href="/store">Store</a></li>
+            <li><a href="/about_us.html">About Us</a></li>
+            <li><a href="/gallery">Gallery</a></li>
+            <li><a href="/quote" class="mobile-cta-btn">Get a Quote</a></li>
+        </ul>
+    </div>
+
+</nav>
+
+<!-- Navbar JS — place before </body> or in your main JS file -->
+<script>
+    const hamburger   = document.getElementById("hamburger");
+    const mobileMenu  = document.getElementById("mobileMenu");
+    const servicesBtn = document.getElementById("mobileServicesBtn");
+    const servicesMenu = document.getElementById("mobileServicesMenu");
+
+    // Toggle main mobile menu
+    hamburger.addEventListener("click", function () {
+        const isOpen = mobileMenu.classList.toggle("open");
+        hamburger.classList.toggle("open", isOpen);
+        hamburger.setAttribute("aria-expanded", isOpen);
+    });
+
+    // Toggle services sub-menu
+    servicesBtn.addEventListener("click", function () {
+        const isOpen = servicesMenu.classList.toggle("open");
+        servicesBtn.classList.toggle("open", isOpen);
+    });
+
+    // Close mobile menu when any link is clicked
+    mobileMenu.querySelectorAll("a").forEach(function (link) {
+        link.addEventListener("click", function () {
+            mobileMenu.classList.remove("open");
+            hamburger.classList.remove("open");
+            hamburger.setAttribute("aria-expanded", false);
+        });
+    });
+</script>
 
   <!-- PAGE HEADER -->
   <section class="page-header">

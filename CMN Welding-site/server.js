@@ -55,3 +55,44 @@ app.get('/cnc_plasma_cutter', (req, res) => {
     res.sendFile(__dirname + '/public/CNC_plasma_cutter.html');
 });
 
+const nodemailer = require('nodemailer');
+
+const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: process.env.GMAIL_USER,     // cmnwelding@gmail.com
+        pass: process.env.GMAIL_PASS,     // your app password (see step 3)
+    }
+});
+
+app.post('/api/quote', express.json(), async (req, res) => {
+    const { fname, lname, email, business, service, message } = req.body;
+
+    if (!fname || !lname || !email || !service || !message) {
+        return res.status(400).json({ error: 'Missing required fields' });
+    }
+
+    try {
+        await transporter.sendMail({
+            from: `"CMN Welding Website" <${process.env.GMAIL_USER}>`,
+            to: 'cmnwelding@gmail.com',
+            replyTo: email,
+            subject: `New Quote Request — ${service}`,
+            html: `
+                <h2>New Quote Request</h2>
+                <p><strong>Name:</strong> ${fname} ${lname}</p>
+                <p><strong>Email:</strong> ${email}</p>
+                <p><strong>Business:</strong> ${business || 'N/A'}</p>
+                <p><strong>Service:</strong> ${service}</p>
+                <hr/>
+                <p><strong>Project Details:</strong></p>
+                <p>${message.replace(/\n/g, '<br>')}</p>
+            `
+        });
+        res.json({ ok: true });
+    } catch (err) {
+        console.error('Mail error:', err);
+        res.status(500).json({ error: 'Failed to send email' });
+    }
+});
+
