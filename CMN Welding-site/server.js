@@ -55,8 +55,8 @@ app.get('/cnc_plasma_cutter', (req, res) => {
     res.sendFile(__dirname + '/public/CNC_plasma_cutter.html');
 });
 
-const nodemailer = require('nodemailer');
 
+/*
 const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
@@ -95,4 +95,5 @@ app.post('/api/quote', express.json(), async (req, res) => {
         res.status(500).json({ error: 'Failed to send email' });
     }
 });
-
+ Note: The email sending code is commented out to prevent errors if nodemailer is not installed or configured. Uncomment and configure as needed.
+*/
