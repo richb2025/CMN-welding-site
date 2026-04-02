@@ -741,3 +741,183 @@ img { display: block; max-width: 100%; }
   .custom-fab-section { padding: 40px 20px 56px; }
   .page-header { padding: 28px 20px 24px; }
 }
+
+/* ================================================================
+   MOBILE NAVBAR — add these rules to your styles.css
+   These sit alongside your existing navbar styles and only
+   activate on screens 768px and below.
+   ================================================================ */
+
+/* ── Hamburger button ───────────────────────────────────────────── */
+.hamburger {
+    display: none;               /* hidden on desktop */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: 40px;
+    height: 40px;
+    background: transparent;
+    border: 1px solid var(--border-orange);
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 0;
+    margin-left: auto;           /* push to far right */
+    flex-shrink: 0;
+    z-index: 201;
+}
+
+.hamburger span {
+    display: block;
+    width: 20px;
+    height: 2px;
+    background: var(--text);
+    border-radius: 2px;
+    transition: transform 0.25s, opacity 0.25s;
+    transform-origin: center;
+}
+
+/* Animate to X when open */
+.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+
+/* ── Mobile slide-down menu ─────────────────────────────────────── */
+.mobile-menu {
+    display: none;               /* hidden on desktop */
+    position: absolute;
+    top: 60px;                   /* height of navbar */
+    left: 0;
+    right: 0;
+    background: rgba(10, 10, 10, 0.98);
+    border-bottom: 2px solid var(--orange);
+    border-top: 1px solid var(--border-dim);
+    z-index: 199;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+}
+
+.mobile-menu.open {
+    max-height: 600px;           /* tall enough for all items */
+}
+
+.mobile-nav-links {
+    list-style: none;
+    padding: 8px 0 16px;
+    margin: 0;
+}
+
+.mobile-nav-links > li > a,
+.mobile-dropdown-btn {
+    display: block;
+    width: 100%;
+    padding: 13px 24px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    background: transparent;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+    font-family: 'Source Sans 3', 'Segoe UI', sans-serif;
+    transition: color 0.2s, background 0.2s;
+}
+
+.mobile-nav-links > li > a:hover,
+.mobile-dropdown-btn:hover {
+    color: var(--text);
+    background: rgba(255, 255, 255, 0.04);
+}
+
+/* Services arrow rotation */
+.mobile-arrow {
+    display: inline-block;
+    transition: transform 0.25s;
+    margin-left: 4px;
+}
+.mobile-dropdown-btn.open .mobile-arrow {
+    transform: rotate(180deg);
+}
+
+/* Services sub-menu */
+.mobile-dropdown-content {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.25s ease;
+    background: rgba(255, 255, 255, 0.02);
+    border-left: 3px solid var(--orange);
+    margin: 0 16px 4px;
+    border-radius: 0 4px 4px 0;
+}
+
+.mobile-dropdown-content.open {
+    max-height: 300px;
+}
+
+.mobile-dropdown-content li a {
+    display: block;
+    padding: 10px 20px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    transition: color 0.2s;
+}
+
+.mobile-dropdown-content li a:hover {
+    color: var(--orange-light);
+}
+
+/* Get a Quote CTA in mobile menu */
+.mobile-cta-btn {
+    display: block !important;
+    margin: 12px 16px 4px !important;
+    padding: 13px 24px !important;
+    background: var(--orange) !important;
+    color: #fff !important;
+    border-radius: 4px !important;
+    text-align: center !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.1em !important;
+    box-shadow: 0 0 20px rgba(232, 98, 10, 0.3);
+    transition: background 0.2s !important;
+}
+.mobile-cta-btn:hover {
+    background: var(--orange-light) !important;
+}
+
+
+/* ================================================================
+   RESPONSIVE BREAKPOINT — 768px and below
+   ================================================================ */
+@media (max-width: 768px) {
+
+    /* Hide the desktop left/right nav lists */
+    .nav-left,
+    .nav-right {
+        display: none;
+    }
+
+    /* Show hamburger and position navbar for absolute child */
+    .navbar {
+        position: relative;
+        justify-content: flex-end;   /* push hamburger to right */
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+    /* Show the mobile menu container (open/close handled by JS) */
+    .mobile-menu {
+        display: block;
+    }
+}
